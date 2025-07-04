@@ -34,6 +34,7 @@
                                                     <option value="Bitcoin">Bitcoin</option>
                                                     <option value="Ethereum">Ethereum</option>
                                                     <option value="Tether">Tether</option>
+                                                    <option value="Cash App">Cash App</option>
                                                     <option value="Bank Withdrawal">Bank Withdrawal</option>
                                                 </select>
                                              </div>
@@ -44,6 +45,11 @@
                                                     <h5 class="card-title text-light">Wallet Address</h5>
                                                     <input class="form-control text-light bg-dark"
                                                         placeholder="Enter your wallet address" type="text" name="account">
+                                                </div>
+                                                <div id="cashappField" style="display: none;">
+                                                    <h5 class="card-title text-light">Cash App Details</h5>
+                                                    <input class="form-control text-light bg-dark"
+                                                        placeholder="Enter your $Cashtag" type="text" name="cashtag">
                                                 </div>
                                                 <div id="bankField" style="display: none;">
                                                     <h5 class="card-title text-light">Bank Account Details</h5>
@@ -83,6 +89,7 @@
         let paymentMethod = document.querySelector('#paymentMethod');
         let accountDetails = document.getElementById('accountDetails');
         let cryptoField = document.getElementById('cryptoField');
+        let cashappField = document.getElementById('cashappField');
         let bankField = document.getElementById('bankField');
 
         paymentMethod.addEventListener('change', function() {
@@ -91,8 +98,14 @@
             if (this.value === 'Bank Withdrawal') {
                 bankField.style.display = 'block';
                 cryptoField.style.display = 'none';
+                cashappField.style.display = 'none';
             } else if (['Bitcoin', 'Ethereum', 'Tether'].includes(this.value)) {
                 cryptoField.style.display = 'block';
+                bankField.style.display = 'none';
+                cashappField.style.display = 'none';
+            } else if (this.value === 'Cash App') {
+                cashappField.style.display = 'block';
+                cryptoField.style.display = 'none';
                 bankField.style.display = 'none';
             } else {
                 accountDetails.style.display = 'none';
